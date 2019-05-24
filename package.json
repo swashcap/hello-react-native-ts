@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "find src -type f -name '*.js' -exec rm {} \\+",
-    "format": "prettier --write '*.js' 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write '*.js' '{src,storybook}/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
@@ -17,10 +17,14 @@
     "@babel/runtime": "^7.4.5",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-conventional": "^7.6.0",
+    "@storybook/addon-ondevice-knobs": "^4.1.18",
+    "@storybook/addon-ondevice-notes": "^4.1.18",
+    "@storybook/react-native": "^4.1.18",
     "@types/jest": "^24.0.13",
     "@types/react": "^16.8.18",
     "@types/react-native": "^0.57.59",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/storybook__react-native": "^3.0.4",
     "babel-jest": "^24.8.0",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
