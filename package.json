@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "find src -type f -name '*.js' -exec rm {} \\+",
+    "format": "prettier --write '*.js' 'src/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
@@ -21,6 +22,7 @@
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
+    "prettier": "^1.17.1",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.8.3",
     "ts-jest": "^24.0.2",
