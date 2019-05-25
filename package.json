@@ -6,6 +6,7 @@
     "clean": "find src -type f -name '*.js' -exec rm {} \\+",
     "format": "prettier --write '*.js' '{src,storybook}/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start:storybook": "STORYBOOK=1 react-native start"
     "test": "jest"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/react-test-renderer": "^16.8.1",
     "@types/storybook__react-native": "^3.0.4",
     "babel-jest": "^24.8.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
     "lint-staged": "^8.1.7",
