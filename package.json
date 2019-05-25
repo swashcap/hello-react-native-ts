@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean": "find src -type f -name '*.js' -exec rm {} \\+",
+    "clean": "find {src,storybook} -type f -name '*.js' -exec rm {} \\+",
     "format": "prettier --write '*.js' '{src,storybook}/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "start:storybook": "STORYBOOK=1 react-native start"
+    "start:storybook": "STORYBOOK=1 react-native start",
+    "reset": "watchman watch-del-all && rm -rf /tmp/{metro-bundler-cache,haste-map-react-native-packager}-*",
     "test": "jest"
   },
   "dependencies": {
