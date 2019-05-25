@@ -6,8 +6,8 @@
     "clean": "find {src,storybook} -type f -name '*.js' -exec rm {} \\+",
     "format": "prettier --write '*.js' '{src,storybook}/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "start:storybook": "STORYBOOK=1 react-native start",
-    "reset": "watchman watch-del-all && rm -rf /tmp/{metro-bundler-cache,haste-map-react-native-packager}-*",
+    "start:storybook": "STORYBOOK=1 react-native start --resetCache",
+    "reset": "watchman watch-del-all && find $(node -pe 'require(\"os\").tmpdir()') -maxdepth 1 -type d -name 'metro-cache' -exec rm -rf {} \\;",
     "test": "jest"
   },
   "dependencies": {
