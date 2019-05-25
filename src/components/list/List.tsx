@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import { Body } from '../text/Body';
+import { Caption } from '../text/Caption';
 
 const styles = StyleSheet.create({
   list: {
@@ -21,11 +22,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 1,
     paddingLeft: 15,
-    paddingRight: 15,
+    paddingRight: 25,
     paddingVertical: 15
   },
   listItemBody: {
     fontWeight: 'bold'
+  },
+  listItemCaption: {
+    color: '#4f4f4f',
+    marginTop: 5
   },
   listItemIndicator: {
     backgroundColor: '#c6c6c6',
@@ -48,10 +53,14 @@ export const ListItem: React.FC<TouchableOpacityProps> = ({
 }) => (
   <TouchableOpacity style={[styles.listItem, style]} {...props}>
     <View style={styles.listItemIndicator} />
-    {children}
+    <View>{children}</View>
   </TouchableOpacity>
 );
 
 export const ListItemBody: React.FC<TextProps> = ({ style, ...props }) => (
   <Body style={[styles.listItemBody, style]} {...props} />
+);
+
+export const ListItemCaption: React.FC<TextProps> = ({ style, ...props }) => (
+  <Caption style={[styles.listItemCaption, style]} {...props} />
 );
