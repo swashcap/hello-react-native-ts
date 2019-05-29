@@ -7,6 +7,8 @@
     "format": "prettier --write '*.js' '{src,storybook}/**/*.{ts,tsx}'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start:storybook": "STORYBOOK=1 react-native start --resetCache",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
     "reset": "watchman watch-del-all && find $(node -pe 'require(\"os\").tmpdir()') -maxdepth 1 -type d -name 'metro-cache' -exec rm -rf {} \\;",
     "test": "jest"
   },
@@ -39,9 +41,13 @@
     "lint-staged": "^8.1.7",
     "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.17.1",
+    "react-dom": "^16.8.6",
     "react-native-typescript-transformer": "^1.2.12",
+    "react-native-web": "^0.11.4",
+    "react-styleguidist": "^9.1.2",
     "react-test-renderer": "16.8.3",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "webpack": "^4.32.2"
   }
 }
