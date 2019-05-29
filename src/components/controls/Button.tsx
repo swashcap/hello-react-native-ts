@@ -6,6 +6,9 @@ export interface ButtonProps
   children: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
-  <RNButton color="darkmagenta" title={children} {...props} />
-);
+export default class Button extends React.Component<ButtonProps> {
+  render() {
+    const { children, ...props } = this.props;
+    return <RNButton color="darkmagenta" title={children} {...props} />;
+  }
+}

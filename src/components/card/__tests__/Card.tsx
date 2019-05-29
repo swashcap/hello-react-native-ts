@@ -2,7 +2,7 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 
 import { Body } from '../../text/Body';
-import { Button } from '../../controls/Button';
+import Button from '../../controls/button';
 import { Card } from '../Card';
 import { Subhead } from '../../text/Subhead';
 

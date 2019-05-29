@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import { Body } from '../text/Body';
-import { Button } from '../controls/Button';
+import Button from '../controls/button';
 import { Subhead } from '../text/Subhead';
 
 const styles = StyleSheet.create({

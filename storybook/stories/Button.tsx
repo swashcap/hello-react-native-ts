@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 
-import { Button } from '../../src/components/controls/Button';
+import Button from '../../src/components/controls/button';
 
 const story = storiesOf('Button', module);
 
