@@ -1,11 +1,18 @@
-import React from 'react';
+import { createStackNavigator } from 'react-navigation';
 
+import { DetailsScreen } from './components/screens/DetailsScreen';
 import { HomeScreen } from './components/screens/HomeScreen';
 
-interface Props {}
-
-export class App extends React.Component<Props> {
-  render() {
-    return <HomeScreen />;
+export const App = createStackNavigator(
+  {
+    Details: DetailsScreen,
+    Home: HomeScreen
+  },
+  {
+    cardStyle: {
+      backgroundColor: 'white'
+    },
+    headerMode: 'none',
+    initialRouteName: 'Home'
   }
-}
+);

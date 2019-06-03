@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View,
-  ViewProps
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, ViewProps } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
 
 import { Headline } from '../text/Headline';
 import { List, ListItem, ListItemBody, ListItemCaption } from '../list/List';
@@ -84,13 +79,17 @@ const styles = StyleSheet.create({
   }
 });
 
-export const HomeScreen: React.FC<ViewProps> = ({ style, ...props }) => (
+export const HomeScreen: React.FC<ViewProps & NavigationScreenProps> = ({
+  navigation,
+  style,
+  ...props
+}) => (
   <SafeAreaView style={[styles.container, style]} {...props}>
     <Headline style={styles.headline}>Home</Headline>
     <ScrollView>
       <List>
         {data.map(({ body, caption, id }) => (
-          <ListItem key={id}>
+          <ListItem key={id} onPress={() => navigation.navigate('Details')}>
             <ListItemBody>{body}</ListItemBody>
             <ListItemCaption numberOfLines={2}>{caption}</ListItemCaption>
           </ListItem>
