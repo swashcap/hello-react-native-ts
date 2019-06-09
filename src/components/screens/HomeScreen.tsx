@@ -85,28 +85,34 @@ const styles = StyleSheet.create({
   }
 });
 
-export const HomeScreen: React.FC<ViewProps & NavigationScreenProps> = ({
-  navigation,
-  style,
-  ...props
-}) => (
-  <SafeAreaView style={[styles.container, style]} {...props}>
-    <Headline style={styles.headline}>Home</Headline>
-    <ScrollView>
-      <List>
-        {data.map(({ body, caption, id }) => (
-          <ListItem
-            key={id}
-            onPress={() => {
-              const navigate = () => navigation.navigate('Details');
-              Platform.OS === 'android' ? setTimeout(navigate, 60) : navigate();
-            }}
-          >
-            <ListItemBody>{body}</ListItemBody>
-            <ListItemCaption numberOfLines={2}>{caption}</ListItemCaption>
-          </ListItem>
-        ))}
-      </List>
-    </ScrollView>
-  </SafeAreaView>
-);
+export class HomeScreen extends React.Component<
+  ViewProps & NavigationScreenProps
+> {
+  render() {
+    const { navigation, style, ...props } = this.props;
+
+    return (
+      <SafeAreaView style={[styles.container, style]} {...props}>
+        <Headline style={styles.headline}>Home</Headline>
+        <ScrollView>
+          <List>
+            {data.map(({ body, caption, id }) => (
+              <ListItem
+                key={id}
+                onPress={() => {
+                  const navigate = () => navigation.navigate('Details');
+                  Platform.OS === 'android'
+                    ? setTimeout(navigate, 60)
+                    : navigate();
+                }}
+              >
+                <ListItemBody>{body}</ListItemBody>
+                <ListItemCaption numberOfLines={2}>{caption}</ListItemCaption>
+              </ListItem>
+            ))}
+          </List>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+}
