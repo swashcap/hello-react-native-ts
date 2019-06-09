@@ -18,8 +18,8 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/runtime": "^7.4.5",
-    "@commitlint/cli": "^7.6.1",
-    "@commitlint/config-conventional": "^7.6.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-knobs": "^5.0.11",
     "@storybook/addon-ondevice-actions": "^5.1.0-alpha.39",
@@ -36,14 +36,14 @@
     "@types/storybook__react-native": "^3.0.4",
     "babel-jest": "^24.8.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "husky": "^2.3.0",
+    "husky": "^2.4.0",
     "jest": "^24.8.0",
-    "lint-staged": "^8.1.7",
+    "lint-staged": "^8.2.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "prettier": "^1.17.1",
+    "prettier": "^1.18.2",
     "react-native-typescript-transformer": "^1.2.12",
     "react-test-renderer": "16.8.3",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.1"
   }
 }
