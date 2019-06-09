@@ -1,5 +1,11 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, ViewProps } from 'react-native';
+import {
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  ViewProps
+} from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { Headline } from '../text/Headline';
@@ -89,7 +95,13 @@ export const HomeScreen: React.FC<ViewProps & NavigationScreenProps> = ({
     <ScrollView>
       <List>
         {data.map(({ body, caption, id }) => (
-          <ListItem key={id} onPress={() => navigation.navigate('Details')}>
+          <ListItem
+            key={id}
+            onPress={() => {
+              const navigate = () => navigation.navigate('Details');
+              Platform.OS === 'android' ? setTimeout(navigate, 60) : navigate();
+            }}
+          >
             <ListItemBody>{body}</ListItemBody>
             <ListItemCaption numberOfLines={2}>{caption}</ListItemCaption>
           </ListItem>
