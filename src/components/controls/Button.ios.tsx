@@ -4,6 +4,7 @@ import {
   Text,
   TouchableNativeFeedback,
   TouchableOpacity,
+  TouchableWithoutFeedbackProps,
   View
 } from 'react-native';
 
