@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'cover',
     width: '100%'
+  },
+  imageWrapper: {
+    height: 0
   }
 });
 
@@ -46,6 +49,7 @@ export interface HomeScreenProps {}
 
 interface HomeScreenState {
   isToggled: boolean;
+  isToggling: boolean;
   scrollY: Animated.Value;
   toggle: Animated.Value;
 }
@@ -56,6 +60,7 @@ export class HomeScreen extends React.Component<
 > {
   state = {
     isToggled: false,
+    isToggling: false,
     scrollY: new Animated.Value(0),
     toggle: new Animated.Value(0)
   };
@@ -64,25 +69,43 @@ export class HomeScreen extends React.Component<
     const { isToggled, toggle } = this.state;
 
     Animated.timing(toggle, {
-      duration: 150,
+      duration: 250,
       easing: isToggled ? Easing.in(Easing.ease) : Easing.out(Easing.ease),
-      toValue: isToggled ? 1 : 0,
+      toValue: isToggled ? 0 : 1,
       useNativeDriver: true
-    }).start();
+    }).start(() => this.setState({ isToggling: false }));
 
-    this.setState({ isToggled: !isToggled });
+    this.setState({ isToggled: !isToggled, isToggling: true });
   };
 
   render() {
-    const { scrollY, toggle } = this.state;
+    const { scrollY, isToggled, isToggling, toggle } = this.state;
 
     const blurRadius =
       Platform.OS === 'ios'
         ? scrollY.interpolate({
-            inputRange: [-50, 0],
-            outputRange: [15, 0]
+            inputRange: [-80, 0],
+            outputRange: [10, 0]
           })
         : undefined;
+
+    const imageScrollTransforms =
+      Platform.OS === 'ios'
+        ? [
+            {
+              scale: scrollY.interpolate({
+                inputRange: [-100, 0, 1],
+                outputRange: [2, 1, 1]
+              })
+            },
+            {
+              translateY: scrollY.interpolate({
+                inputRange: [-100, 0, 1],
+                outputRange: [-50, 0, 0]
+              })
+            }
+          ]
+        : [];
 
     return (
       <SafeAreaView style={styles.container}>
@@ -97,31 +120,34 @@ export class HomeScreen extends React.Component<
             }
           ])}
         >
-          <Animated.Image
-            blurRadius={blurRadius}
-            source={{
-              uri: 'https://placekitten.com/1200/800?image=2'
-            }}
-            style={[
-              styles.image,
-              {
-                transform: [
-                  {
-                    scale: scrollY.interpolate({
-                      inputRange: [-100, 0, 1],
-                      outputRange: [2, 1, 1]
-                    })
-                  }
-                ]
-              },
-              {
-                opacity: toggle.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [1, 0]
-                })
-              }
-            ]}
-          />
+          <View style={styles.imageWrapper}>
+            <Animated.Image
+              blurRadius={blurRadius}
+              source={{
+                uri: 'https://placekitten.com/1200/800?image=2'
+              }}
+              style={[
+                styles.image,
+                {
+                  transform: [
+                    ...imageScrollTransforms,
+                    {
+                      translateY: toggle.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, -40]
+                      })
+                    }
+                  ]
+                },
+                {
+                  opacity: toggle.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 0]
+                  })
+                }
+              ]}
+            />
+          </View>
           <Animated.View
             style={[
               styles.content,
@@ -130,7 +156,7 @@ export class HomeScreen extends React.Component<
                   {
                     translateY: toggle.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [0, -200]
+                      outputRange: [200, 0]
                     })
                   }
                 ]
@@ -165,7 +191,62 @@ export class HomeScreen extends React.Component<
               aliquet non. Maecenas justo lorem, vestibulum eu feugiat vitae,
               ultrices nec ipsum.
             </Body>
+            <Body style={styles.body}>
+              Fusce eu leo sit amet enim tincidunt adipiscing id sed felis. Cras
+              augue dolor, accumsan id blandit vel, blandit a nulla. Aenean
+              Fusce eu leo sit amet enim tincidunt adipiscing id sed felis. Cras
+              augue dolor, accumsan id blandit vel, blandit a nulla.
+            </Body>
+            <Body style={styles.body}>
+              Aenean condimentum urna id urna varius accumsan. Vivamus
+              consectetur pharetra purus id vulputate. Nunc volutpat tincidunt
+              consequat. Proin nec adipiscing libero. Proin nunc felis, sagittis
+              non tristique fermentum, vehicula elementum dolor. Suspendisse
+              velit lectus, ornare eget feugiat non, tincidunt nec purus.
+              Curabitur venenatis dolor id lorem tincidunt non faucibus mi
+              imperdiet. Suspendisse posuere leo nunc. Morbi sodales sapien vel
+              sem scelerisque faucibus. Suspendisse pellentesque tempor est, ac
+              vulputate neque molestie ac.
+            </Body>
+            <Body style={styles.body}>
+              {' '}
+              Class aptent taciti sociosqu ad litora torquent per conubia
+              nostra, per inceptos himenaeos. Quisque eget diam purus, laoreet
+              facilisis elit.
+            </Body>
+            <Body style={styles.body}>
+              {' '}
+              Integer a nulla velit. Donec justo lacus, elementum sit amet
+              congue et, viverra quis risus. Suspendisse venenatis tincidunt
+              purus. In lectus augue, cursus in egestas id, ornare a purus.
+              Morbi vitae tortor nisl, blandit vulputate diam.
+            </Body>
+            <Body style={styles.body}>
+              Proin imperdiet, mi vel adipiscing imperdiet, ipsum sem pharetra
+              justo, et ultricies purus velit in urna. Nulla vitae nisi nisi.
+              Morbi eleifend iaculis purus, id porta tortor condimentum eget.
+              Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas. Sed risus leo, bibendum
+              accumsan adipiscing tincidunt, viverra vel nibh. Phasellus justo
+              libero, viverra eu sagittis vel, rhoncus vitae justo. Curabitur in
+              fringilla risus. Morbi ornare velit eu nisl porta feugiat.
+            </Body>
+            <Body style={styles.body}>
+              Integer a nulla velit. Donec justo lacus, elementum sit amet
+              congue et, viverra quis risus. Suspendisse venenatis tincidunt
+              purus. In lectus augue, cursus in egestas id, ornare a purus.
+              Morbi vitae tortor nisl, blandit vulputate diam. Proin imperdiet,
+              mi vel adipiscing imperdiet, ipsum sem pharetra justo, et
+              ultricies purus velit in urna. Nulla vitae nisi nisi. Morbi
+              eleifend iaculis purus, id porta tortor condimentum eget.
+              Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas. Sed risus leo, bibendum
+              accumsan adipiscing tincidunt, viverra vel nibh. Phasellus justo
+              libero, viverra eu sagittis vel, rhoncus vitae justo. Curabitur in
+              fringilla risus. Morbi ornare velit eu nisl porta feugiat.
+            </Body>
           </Animated.View>
+          <View style={{ height: !isToggled && !isToggling ? 200 : 0 }} />
         </Animated.ScrollView>
       </SafeAreaView>
     );
