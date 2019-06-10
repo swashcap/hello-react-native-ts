@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Animated,
+  Easing,
   Platform,
   SafeAreaView,
   StyleSheet,
@@ -44,7 +45,9 @@ const styles = StyleSheet.create({
 export interface HomeScreenProps {}
 
 interface HomeScreenState {
+  isToggled: boolean;
   scrollY: Animated.Value;
+  toggle: Animated.Value;
 }
 
 export class HomeScreen extends React.Component<
@@ -52,11 +55,26 @@ export class HomeScreen extends React.Component<
   HomeScreenState
 > {
   state = {
-    scrollY: new Animated.Value(0)
+    isToggled: false,
+    scrollY: new Animated.Value(0),
+    toggle: new Animated.Value(0)
+  };
+
+  onTogglePress = () => {
+    const { isToggled, toggle } = this.state;
+
+    Animated.timing(toggle, {
+      duration: 150,
+      easing: isToggled ? Easing.in(Easing.ease) : Easing.out(Easing.ease),
+      toValue: isToggled ? 1 : 0,
+      useNativeDriver: true
+    }).start();
+
+    this.setState({ isToggled: !isToggled });
   };
 
   render() {
-    const { scrollY } = this.state;
+    const { scrollY, toggle } = this.state;
 
     const blurProp =
       Platform.OS === 'ios'
@@ -97,17 +115,37 @@ export class HomeScreen extends React.Component<
                     })
                   }
                 ]
+              },
+              {
+                opacity: toggle.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [1, 0]
+                })
               }
             ]}
           />
-          <View style={styles.content}>
+          <Animated.View
+            style={[
+              styles.content,
+              {
+                transform: [
+                  {
+                    translateY: toggle.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [0, -200]
+                    })
+                  }
+                ]
+              }
+            ]}
+          >
             <Headline style={styles.headline}>Home</Headline>
             <Body style={styles.body}>
               This tests the pull-to-refresh-style{' '}
               <Code>&lt;Image&nbsp;/&gt;</Code> element.
             </Body>
             <View style={styles.buttonWrapper}>
-              <Button>Toggle</Button>
+              <Button onPress={this.onTogglePress}>Toggle</Button>
             </View>
             <Body style={styles.body}>
               Praesent laoreet gravida fermentum. Maecenas consectetur, odio at
@@ -129,7 +167,7 @@ export class HomeScreen extends React.Component<
               aliquet non. Maecenas justo lorem, vestibulum eu feugiat vitae,
               ultrices nec ipsum.
             </Body>
-          </View>
+          </Animated.View>
         </Animated.ScrollView>
       </SafeAreaView>
     );
