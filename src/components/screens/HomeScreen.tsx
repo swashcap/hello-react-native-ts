@@ -92,8 +92,8 @@ export class HomeScreen extends React.Component<
                 transform: [
                   {
                     scale: scrollY.interpolate({
-                      inputRange: [-100, 0],
-                      outputRange: [2, 1]
+                      inputRange: [-100, 0, 1],
+                      outputRange: [2, 1, 1]
                     })
                   }
                 ]
