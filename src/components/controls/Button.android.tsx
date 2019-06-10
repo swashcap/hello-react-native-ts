@@ -33,7 +33,7 @@ export class Button extends React.Component<ButtonProps> {
     const { children = '', ...props } = this.props;
 
     return (
-      <TouchableNativeFeedback>
+      <TouchableNativeFeedback {...props}>
         <View style={styles.button}>
           <Text style={styles.text}>{children.toUpperCase()}</Text>
         </View>
