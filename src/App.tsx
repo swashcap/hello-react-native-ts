@@ -1,14 +1,16 @@
 import { createStackNavigator } from 'react-navigation';
 
 import { DetailsScreen } from './components/screens/DetailsScreen';
-import { ListScreen } from './components/screens/ListScreen';
 import { HomeScreen } from './components/screens/HomeScreen';
+import { InputScreen } from './components/screens/InputScreen';
+import { ListScreen } from './components/screens/ListScreen';
 
 export const App = createStackNavigator(
   {
     Details: DetailsScreen,
-    List: ListScreen,
-    Home: HomeScreen
+    Home: HomeScreen,
+    Input: InputScreen,
+    List: ListScreen
   },
   {
     cardStyle: {
