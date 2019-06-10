@@ -76,15 +76,13 @@ export class HomeScreen extends React.Component<
   render() {
     const { scrollY, toggle } = this.state;
 
-    const blurProp =
+    const blurRadius =
       Platform.OS === 'ios'
-        ? {
-            blurRadius: scrollY.interpolate({
-              inputRange: [-50, 0],
-              outputRange: [15, 0]
-            })
-          }
-        : null;
+        ? scrollY.interpolate({
+            inputRange: [-50, 0],
+            outputRange: [15, 0]
+          })
+        : undefined;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -100,7 +98,7 @@ export class HomeScreen extends React.Component<
           ])}
         >
           <Animated.Image
-            {...blurProp}
+            blurRadius={blurRadius}
             source={{
               uri: 'https://placekitten.com/1200/800?image=2'
             }}
