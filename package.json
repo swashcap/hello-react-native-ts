@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react-native": "0.59.10",
     "react-navigation": "^2"
   },
   "devDependencies": {
@@ -27,8 +27,8 @@
     "@storybook/addon-ondevice-notes": "^4.1.18",
     "@storybook/react-native": "^4.1.18",
     "@types/jest": "^24.0.13",
-    "@types/react": "16.8.19",
-    "@types/react-native": "0.57.60",
+    "@types/react": "16.8.22",
+    "@types/react-native": "0.57.65",
     "@types/react-navigation": "^2",
     "@types/react-test-renderer": "^16.8.1",
     "@types/storybook__addon-actions": "^3.4.2",
@@ -45,5 +45,8 @@
     "react-test-renderer": "16.8.3",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.1"
+  },
+  "resolutions": {
+    "@types/react-navigation/@types/react-native": "0.57.65"
   }
 }
