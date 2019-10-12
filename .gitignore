@@ -60,3 +60,4 @@ buck-out/
 
 # Compiled files
 src/**/*.js
+storybook/**/*.js
