@@ -8,6 +8,7 @@ import './rn-addons';
 configure(() => {
   require('./stories/Button');
   require('./stories/Card');
+  require('./stories/Carousel');
   require('./stories/List');
   require('./stories/Text');
 }, module);
