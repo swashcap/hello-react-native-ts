@@ -6,5 +6,5 @@ module.exports = {
     '^.+\\.(js)$': '<rootDir>/node_modules/babel-jest',
     '\\.(ts|tsx)$': 'ts-jest'
   },
-  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$'
+  testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$'
 };
